@@ -1,0 +1,90 @@
+  /* ====== STYLES GÉNÉRAUX ====== */
+  :root {
+    --card-size: 90px;
+    --gap: 14px;
+    --primary: lch(64.56% 46.19 344.29);
+    --bg: #222;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    background: var(--bg);
+    color: #fff;
+    font-family: system-ui, sans-serif;
+  }
+
+  h1 { margin: 0; }
+
+  /* ====== TABLEAU & CARTES ====== */
+  #game-board {
+    display: grid;
+    /* 4 colonnes fixes pour un tableau 4×4, quel que soit l’écran */
+    grid-template-columns: repeat(4, var(--card-size));
+    gap: var(--gap);
+    justify-content: center;
+  }
+
+  .card {
+    width: var(--card-size);
+    height: var(--card-size);
+    perspective: 600px; /* effet 3D */
+    cursor: pointer;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+
+  .face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    user-select: none;
+  }
+
+  .front {
+    background: #000;
+    border: 3px solid #555;
+  }
+  .back {
+    background: var(--primary);
+    transform: rotateY(180deg);
+    color: #d6d6d6;
+    font-size: 3rem;
+  }
+
+  /* ====== INFOS & BOUTONS ====== */
+  #info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  button {
+    background: var(--primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  button:hover { filter: brightness(1.1); }
